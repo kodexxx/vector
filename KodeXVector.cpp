@@ -109,6 +109,11 @@ KodeXVector<T> &KodeXVector<T>::operator=(const KodeXVector &vector) {
     }
 
     this->size = vector.size;
+    delete[] this->data;
+    this->data = new T[vector.size];
+    if (this->data == nullptr) {
+        throw runtime_error("no memory");
+    }
 
     for (int i = 0; i < vector.size; i++) {
         this->data[i] = vector.data[i];
@@ -138,6 +143,9 @@ bool KodeXVector<T>::operator==(KodeXVector &vector) {
 
 template<typename T>
 T &KodeXVector<T>::operator[](int index) {
+    if (index >= this->size) {
+        throw runtime_error("out of range");
+    }
     return this->data[index];
 }
 

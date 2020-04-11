@@ -10,7 +10,7 @@ int main() {
     cout << "Data: " << endl;
     cout << vec.toString() << endl;
     cout << "Modified by index: " << endl;
-    vec[2] = 228;
+    vec[10] = 228;
     cout << vec.toString();
 
     cout << endl;
