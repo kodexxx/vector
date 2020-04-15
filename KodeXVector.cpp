@@ -41,11 +41,16 @@ int KodeXVector<T>::getSize() {
 template<typename T>
 int KodeXVector<T>::setSize(int newSize) {
     T *newData = new T[newSize];
+    if (newData == nullptr) {
+        throw runtime_error("no memory");
+    }
+
     for (int i = 0; i < newSize; i++) {
         newData[i] = i > this->size ? 0 : data[i];
     }
 
     this->size = newSize;
+    delete[] this->data;
     this->data = newData;
 
     return 1;
@@ -144,7 +149,7 @@ bool KodeXVector<T>::operator==(KodeXVector &vector) {
 template<typename T>
 T &KodeXVector<T>::operator[](int index) {
     if (index >= this->size) {
-        throw runtime_error("out of range");
+        throw runtime_error("2 of range");
     }
     return this->data[index];
 }
